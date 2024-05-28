@@ -1,0 +1,68 @@
+// src/styles/Login.scss
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-color: #004d40; // Dark green background
+  }
+  
+  .login-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+    background-color: #00332a; // Slightly darker shade for contrast
+  }
+  
+  .login-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #00332a; // Matching color with login-left
+  }
+  
+  .login-box {
+    width: 100%;
+    max-width: 300px;
+    height: 400px; // Increased height
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Center vertically
+    align-items: center; // Center horizontally
+    padding: 20px;
+    background-color: #024d44; // Adjusted to a darker green color
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .google-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; // Set text color to white
+    width: 100%; // Ensure button width is same as other inputs
+  
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1); // Change hover background color if needed
+    }
+  
+    img {
+      width: 24px; // Adjust size of Google logo
+      height: 24px;
+      margin-right: 8px; // Add space between icon and text
+    }
+  
+    span {
+      margin-left: 8px; // Add space between icon and text
+    }
+  }
+  
