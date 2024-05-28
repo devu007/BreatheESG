@@ -11,8 +11,8 @@
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center align vertically */
-  align-items: flex-start; /* Align items to the start horizontally */
+  justify-content: center; 
+  align-items: flex-start;
   padding: 20px;
   margin-left: 250px;
 }
@@ -20,7 +20,7 @@
 .image-above-login-box {
   width: 156px;
   height: 152px;
-  margin-bottom: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px; 
 }
 
 h3 {
@@ -34,7 +34,7 @@ h3 {
   color: white;
   width: 301px;
   height: 45px;
-  margin: 20px 0; /* Adjust the margin as needed */
+  margin: 20px 0; 
 }
 
 p {
@@ -54,20 +54,20 @@ p {
 }
 
 .signup-box {
-  width: 320px; /* Adjusted width */
-  height: 400px; /* Reduced height */
+  width: 320px; 
+  height: 400px;
   padding: 20px;
   background-color: #235E4A;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Center align items horizontally */
+  align-items: center; 
   margin-top: -40px;
 }
 
 .signup-header {
-  width: 100%; /* Match the width of the signup box */
+  width: 100%; 
   text-align: left;
   margin-bottom: 20px;
 }
@@ -87,17 +87,17 @@ p {
 }
 
 .signup-form {
-  width: 100%; /* Cover the entire width of the box */
+  width: 100%; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Fill the entire height of the box */
+  height: 100%; 
 }
 
 .signup-form-item {
-  width: 100%; /* Cover the entire width of the box */
-  margin-bottom: 15px; /* Adjusted margin */
+  width: 100%; 
+  margin-bottom: 15px; 
 }
 
 .input-label {
@@ -111,10 +111,10 @@ p {
 
 .signup-input {
   width: 100%;
-  height: 50px; /* Adjusted height for input fields */
-  text-align: left; /* Align text within input fields to the left */
+  height: 50px; 
+  text-align: left; 
 }
 
 .signup-button {
-  width: 100%; /* Cover the entire width of the box */
+  width: 100%;
 }

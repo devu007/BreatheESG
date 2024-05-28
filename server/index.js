@@ -6,9 +6,9 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-const users = []; // In-memory user storage, replace with a database in production
+const users = []; // In-memory user storage
 
-const SECRET_KEY = process.env.SECRET_KEY; // Access the secret key from the environment variable
+const SECRET_KEY = process.env.SECRET_KEY;
 
 // Endpoint to handle user registration
 app.post("/signup", (req, res) => {
