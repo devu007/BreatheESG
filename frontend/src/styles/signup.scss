@@ -1,0 +1,83 @@
+// src/styles/signup.scss
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap');
+
+.signup-container {
+  display: flex;
+  height: 100vh;
+  background-color: #014421;
+}
+
+.left-side {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center align vertically */
+  align-items: flex-start; /* Align items to the start horizontally */
+  padding: 20px;
+  margin-left: 250px;
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.logo {
+  width: 301px;
+  height: 45px;
+  margin: 20px 0; /* Adjust the margin as needed */
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+.right-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #014421;
+}
+
+.signup-box {
+  width: 320px; /* Adjusted width */
+  height: 450px; /* Increased height */
+  padding: 20px;
+  background-color: #235E4A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center align items horizontally */
+}
+
+.signup-form {
+  width: 100%; /* Cover the entire width of the box */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Fill the entire height of the box */
+}
+
+.signup-form-item {
+  width: 100%; /* Cover the entire width of the box */
+  margin-bottom: 15px; /* Adjusted margin */
+}
+
+.signup-input {
+  width: 100%;
+  height: 50px; /* Adjusted height for input fields */
+  text-align: center; /* Center align text within input fields */
+}
+
+.signup-button {
+  width: 100%; /* Cover the entire width of the box */
+}
