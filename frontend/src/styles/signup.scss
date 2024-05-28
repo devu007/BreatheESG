@@ -1,4 +1,3 @@
-// src/styles/signup.scss
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap');
 
 .signup-container {
@@ -18,6 +17,12 @@
   margin-left: 250px;
 }
 
+.image-above-login-box {
+  width: 156px;
+  height: 152px;
+  margin-bottom: 20px; /* Adjust the margin as needed */
+}
+
 h3 {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -26,6 +31,7 @@ h3 {
 }
 
 .logo {
+  color: white;
   width: 301px;
   height: 45px;
   margin: 20px 0; /* Adjust the margin as needed */
@@ -44,11 +50,12 @@ p {
   justify-content: center;
   align-items: center;
   background-color: #014421;
+  padding-top: 5px;
 }
 
 .signup-box {
   width: 320px; /* Adjusted width */
-  height: 450px; /* Increased height */
+  height: 400px; /* Reduced height */
   padding: 20px;
   background-color: #235E4A;
   border-radius: 10px;
@@ -56,6 +63,27 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center; /* Center align items horizontally */
+  margin-top: -40px;
+}
+
+.signup-header {
+  width: 100%; /* Match the width of the signup box */
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.signup-title {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  margin: 0;
+}
+
+.signup-subtitle {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin: 5px 0 20px 0;
 }
 
 .signup-form {
@@ -72,10 +100,19 @@ p {
   margin-bottom: 15px; /* Adjusted margin */
 }
 
+.input-label {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
+}
+
 .signup-input {
   width: 100%;
   height: 50px; /* Adjusted height for input fields */
-  text-align: center; /* Center align text within input fields */
+  text-align: left; /* Align text within input fields to the left */
 }
 
 .signup-button {

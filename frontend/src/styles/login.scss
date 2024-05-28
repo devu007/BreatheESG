@@ -20,10 +20,8 @@
 .image-above-login-box {
   width: 156px;
   height: 152px;
-  top: 56px;
-  left: 872px;
+  margin-bottom: 20px; /* Adjust the margin as needed */
 }
-
 
 h3 {
   font-family: "Open Sans", sans-serif;
@@ -33,6 +31,7 @@ h3 {
 }
 
 .logo {
+  color: white;
   width: 301px;
   height: 45px;
   margin: 20px 0; /* Adjust the margin as needed */
@@ -48,15 +47,15 @@ p {
 .right-side {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #014421;
+  padding-top: 10px; /* Reduced padding to lift the login box */
 }
-
 
 .login-box {
   width: 320px; /* Adjusted width */
-  height: 400px; /* Increased height */
   padding: 20px;
   background-color: #235E4A;
   border-radius: 10px;
@@ -64,6 +63,27 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center; /* Center align items horizontally */
+  margin-top: -40px; /* Negative margin to lift the box further */
+}
+
+.login-header {
+  width: 100%; /* Match the width of the login box */
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.login-title {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  margin: 0;
+}
+
+.login-subtitle {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin: 0;
 }
 
 .login-form {
@@ -71,7 +91,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Align items to the start horizontally */
   height: 100%; /* Fill the entire height of the box */
 }
 
@@ -83,9 +103,16 @@ p {
 .login-input {
   width: 100%;
   height: 50px; /* Adjusted height for input fields */
-  text-align: center; /* Center align text within input fields */
+  text-align: left; /* Center align text within input fields */
 }
 
 .login-button {
   width: 100%; /* Cover the entire width of the box */
+}
+
+.login-form-item p {
+  color: white;
+  margin-bottom: 5px; /* Reduced margin between label and input */
+  text-align: left;
+  width: 100%;
 }

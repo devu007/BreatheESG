@@ -1,4 +1,3 @@
-// src/components/Login.tsx
 import React, { useState } from "react";
 import { Button, Input, Form } from "antd";
 import {
@@ -59,35 +58,51 @@ const Login: React.FC = () => {
           guidelines
         </p>
       </div>
-      <img src={logo1} alt="Image" className="image-above-login-box" />
       <div className="right-side">
+        <img src={logo1} alt="Image" className="image-above-login-box" />
         <div className="login-box">
-          <Form>
-            <Form.Item>
+          <div className="login-header">
+            <h1 className="login-title">Login</h1>
+            <p className="login-subtitle">
+              Login with your registered Email ID
+            </p>
+          </div>
+
+          <Form className="login-form">
+            <Form.Item className="login-form-item">
+              <p>Email</p>
               <Input
+                className="login-input"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item className="login-form-item">
+              <p>Password</p>
               <Input.Password
+                className="login-input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               />
             </Form.Item>
-            <Form.Item>
-              <Button type="primary" onClick={handleLogin} block>
+            <Form.Item className="login-form-item">
+              <Button
+                type="primary"
+                onClick={handleLogin}
+                block
+                className="login-button"
+              >
                 Login
               </Button>
             </Form.Item>
-            <Form.Item>
+            <Form.Item className="login-form-item">
               <Button
                 onClick={handleGoogleLogin}
                 block
-                className="google-login-button"
+                className="login-button google-login-button"
               >
                 <img
                   src="https://www.pngwing.com/en/free-png-yfswb"
