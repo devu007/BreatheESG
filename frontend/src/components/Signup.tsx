@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input, Form } from "antd";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import "../styles/signup.scss";
 import { useAuth } from "../context/AuthContext";
@@ -11,39 +11,46 @@ import logo1 from "../images/BreatheESGworld.png";
 const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
     try {
-      console.log("Creating user...");
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      console.log("User created:", userCredential);
+      await updateProfile(userCredential.user, {
+        displayName: name,
+        photoURL: `https://api.dicebear.com/6.x/identicon/svg?seed=${name}`,
+      });
       const token = await userCredential.user.getIdToken();
+      const userData = {
+        email: userCredential.user.email,
+        displayName: name,
+        photoURL: userCredential.user.photoURL,
+      };
       login(token);
-      alert("User signed up successfully");
-      navigate("/Dashboard");
+      alert("User registered successfully");
+      navigate("/dashboard");
     } catch (error) {
-      console.error("Error signing up:", error);
-      alert("Error signing up. Please try again.");
+      console.error(error);
+      alert("Signup failed. Please try again.");
     }
   };
 
   return (
     <div className="signup-container">
       <div className="left-side">
-        <h3>Welcome To</h3>
-        <img src={logo} alt="Breathe ESG Logo" className="logo" />
+        <h3>WELCOME TO</h3>
+        <img
+          src={logo}
+          alt="Breathe ESG Logo"
+          className="logo"
+          style={{ width: "300px", height: "45px", margin: "20px 0" }}
+        />
         <p>
           We help you track your organisation's metrics as per the ESG
           guidelines
@@ -56,32 +63,34 @@ const Signup: React.FC = () => {
             <h1 className="signup-title">Sign Up</h1>
           </div>
           <Form className="signup-form">
+            <p className="input-label">Email</p>
             <Form.Item className="signup-form-item">
-              <p className="input-label">Email</p>
               <Input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
                 className="signup-input"
+              />
+            </Form.Item>
+            <p className="input-label">Password</p>
+
+            <Form.Item className="signup-form-item">
+              <Input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
-              />
-            </Form.Item>
-            <Form.Item className="signup-form-item">
-              <p className="input-label">Password</p>
-              <Input.Password
                 className="signup-input"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
               />
             </Form.Item>
             <Form.Item className="signup-form-item">
               <p className="input-label">Confirm Password</p>
               <Input.Password
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
                 className="signup-input"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm Password"
               />
             </Form.Item>
             <Form.Item className="signup-form-item">
@@ -91,7 +100,7 @@ const Signup: React.FC = () => {
                 block
                 className="signup-button"
               >
-                Signup
+                Sign Up
               </Button>
             </Form.Item>
           </Form>

@@ -31,10 +31,9 @@ h3 {
 }
 
 .logo {
-  color: white;
-  width: 301px;
-  height: 45px;
-  margin: 20px 0; 
+  width: 301px; // Set width to auto to maintain the original width
+  height: 100px; // Set height to auto to maintain the original height
+  margin: 20px 0; // Adjust margin as needed
 }
 
 p {

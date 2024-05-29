@@ -1,40 +1,67 @@
 // src/context/AuthContext.tsx
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
-interface AuthContextType {
+interface UserData {
+  email: string | null;
+  photoURL: string | null;
+}
+
+interface AuthContextProps {
+  user: UserData | null;
   token: string | null;
   login: (token: string) => void;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<UserData | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
-  const login = (token: string) => {
-    setToken(token);
-    localStorage.setItem("token", token);
+  const login = async (newToken: string) => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      setToken(newToken);
+      setUser({
+        email: currentUser.email,
+        photoURL: currentUser.photoURL,
+      });
+    }
   };
 
   const logout = () => {
     setToken(null);
-    localStorage.removeItem("token");
+    setUser(null);
   };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    }
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const idToken = await user.getIdToken();
+        setToken(idToken);
+        setUser({
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+      } else {
+        setToken(null);
+        setUser(null);
+      }
+    });
+    return unsubscribe;
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -42,7 +69,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;

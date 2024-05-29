@@ -11,7 +11,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   align-items: flex-start; 
   padding: 20px;
   margin-left: 250px;
@@ -31,10 +31,9 @@ h3 {
 }
 
 .logo {
-  color: white;
-  width: 301px;
-  height: 45px;
-  margin: 20px 0; 
+  width: 600px; /* Adjusted width for a normal size */
+  height: 20px; /* Maintain aspect ratio */
+  margin: 10px 0; /* Adjust margin for alignment */
 }
 
 p {
@@ -115,4 +114,11 @@ p {
   margin-bottom: 5px; 
   text-align: left;
   width: 100%;
+}
+
+.google-logo {
+  width: 15px;
+  height: auto;
+  align-items: left;
+  margin-right: 10px;
 }

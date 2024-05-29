@@ -11,6 +11,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/BreatheESG.png";
 import logo1 from "../images/BreatheESGworld.png";
+import googleLogo from "../images/googleLogo.png";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -26,6 +27,10 @@ const Login: React.FC = () => {
         password
       );
       const token = await userCredential.user.getIdToken();
+      const userData = {
+        email: userCredential.user.email,
+        photoURL: userCredential.user.photoURL,
+      };
       login(token);
       alert("User logged in successfully");
       navigate("/dashboard");
@@ -40,6 +45,10 @@ const Login: React.FC = () => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken();
+      const userData = {
+        email: result.user.email,
+        photoURL: result.user.photoURL,
+      };
       login(token);
       alert("User logged in with Google successfully");
       navigate("/Dashboard");
@@ -52,7 +61,12 @@ const Login: React.FC = () => {
     <div className="login-container">
       <div className="left-side">
         <h3>WELCOME TO</h3>
-        <img src={logo} alt="Breathe ESG Logo" className="logo" />
+        <img
+          src={logo}
+          alt="Breathe ESG Logo"
+          className="logo"
+          style={{ width: "300px", height: "45px", margin: "20px 0" }}
+        />
         <p>
           We help you track your organisation's metrics as per the ESG
           guidelines
@@ -105,7 +119,7 @@ const Login: React.FC = () => {
                 className="login-button google-login-button"
               >
                 <img
-                  src="https://www.pngwing.com/en/free-png-yfswb"
+                  src={googleLogo}
                   alt="Google logo"
                   className="google-logo"
                 />

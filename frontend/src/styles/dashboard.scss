@@ -1,0 +1,119 @@
+:root {
+  --sidebar-background-color: #004d00; // Dark green shade
+  --sidebar-selected-background-color: #006400; // Slightly lighter green for selected items
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  color: white;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 20px;
+  margin-right: 10px;
+}
+
+.navbar-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.country-dropdown {
+  margin-right: 20px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: left;
+  margin: 20px 0;
+  margin-left: 40px;
+}
+
+.navigation-buttons button {
+  margin: 0 10px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 0 16px;
+  margin-top: 40px; 
+  height: 15px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 0 16px;
+  margin-top: 20px; 
+}
+.sidebar-logo {
+  height: 20px; 
+  transition: height 0.3s;
+}
+
+.sidebar-logo.collapsed {
+  height: 10px; 
+  transition: height 0.3s; 
+}
+
+// Sidebar specific styles
+.ant-layout-sider {
+  background-color: var(--sidebar-background-color) !important;
+}
+
+.ant-menu-dark {
+  background-color: var(--sidebar-background-color) !important;
+}
+
+.ant-menu-dark .ant-menu-item {
+  background-color: var(--sidebar-background-color) !important;
+  color: white !important;
+}
+
+.ant-menu-dark .ant-menu-item:hover {
+  background-color: var(--sidebar-selected-background-color) !important;
+}
+
+.ant-menu-dark .ant-menu-item-selected {
+  background-color: var(--sidebar-selected-background-color) !important;
+}
+
+.ant-menu-dark .ant-menu-submenu-title:hover {
+  background-color: var(--sidebar-selected-background-color) !important;
+}
