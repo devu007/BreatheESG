@@ -8,7 +8,7 @@
 
 .left-container {
   display: flex;
-  flex-direction: column; // Changed from row to column
+  flex-direction: column; 
 }
 
 .box-container {
@@ -19,7 +19,7 @@
 }
 
 .tracker-box {
-  width: auto; // Adjust to fit content or specify a width like 200px
+  width: auto; 
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -29,11 +29,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-right: 10px; // Space between boxes
+  margin-right: 10px; 
 }
 
 .tracker-box:last-child {
-  margin-right: 0; // Remove margin from the last box
+  margin-right: 0; 
 }
 
 .tracker-box h3 {
@@ -54,7 +54,7 @@
 
 .search-container {
   display: flex;
-  justify-content: flex-start; // Changed to flex-start to align left
+  justify-content: flex-start; 
   margin-bottom: 20px;
 }
 
