@@ -6,16 +6,20 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+.left-container {
+  display: flex;
+  flex-direction: column; // Changed from row to column
+}
+
 .box-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: row;
+  flex-wrap: nowrap;
   margin-bottom: 20px;
 }
 
 .tracker-box {
-  flex: 1;
-  min-width: 200px;
+  width: auto; // Adjust to fit content or specify a width like 200px
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -25,6 +29,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-right: 10px; // Space between boxes
+}
+
+.tracker-box:last-child {
+  margin-right: 0; // Remove margin from the last box
 }
 
 .tracker-box h3 {
@@ -40,12 +49,12 @@
 
 .tracker-icon {
   font-size: 36px;
-  color: #1890ff; 
+  color: #1890ff;
 }
 
 .search-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; // Changed to flex-start to align left
   margin-bottom: 20px;
 }
 

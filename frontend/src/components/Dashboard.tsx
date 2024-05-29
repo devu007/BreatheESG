@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Menu, Dropdown, Layout, Badge } from "antd";
 import {
-  MenuOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   DashboardOutlined,
@@ -14,14 +13,15 @@ import {
   AimOutlined,
   LogoutOutlined,
   BellOutlined,
-  FormOutlined, // Import FormOutlined for Data Entry
-  ControlOutlined, // Import ControlOutlined for Tracker
+  FormOutlined,
+  ControlOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "../context/AuthContext";
 import logo from "../images/BreatheESG.png";
 import DataEntry from "./DataEntry";
 import Tracker from "./Tracker";
-import "../styles/dashboard.scss"; // Assuming you have the relevant styles in this file
+import YearDropdown from "./YearDropDown";
+import "../styles/dashboard.scss";
 
 const { Sider, Content } = Layout;
 
@@ -109,6 +109,7 @@ const Dashboard: React.FC = () => {
           <nav className="navbar">
             <div className="navbar-left">
               <img src={logo} alt="Breathe ESG Logo" className="navbar-logo" />
+              {user && <span className="user-name">View Name</span>}
               <Dropdown overlay={menu}>
                 <Button className="country-dropdown">North America</Button>
               </Dropdown>
@@ -128,19 +129,29 @@ const Dashboard: React.FC = () => {
               )}
             </div>
           </nav>
-          <div className="navigation-buttons">
-            <Button
-              onClick={() => setCurrentPage("tracker")}
-              icon={<ControlOutlined />}
-            >
-              Tracker
-            </Button>
-            <Button
-              onClick={() => setCurrentPage("dataEntry")}
-              icon={<FormOutlined />}
-            >
-              Data Entry
-            </Button>
+          <div className="navigation-container">
+            <div className="navigation-buttons">
+              <Button
+                onClick={() => setCurrentPage("tracker")}
+                icon={<ControlOutlined />}
+              >
+                Tracker
+              </Button>
+              <Button
+                onClick={() => setCurrentPage("dataEntry")}
+                icon={<FormOutlined />}
+              >
+                Data Entry
+              </Button>
+            </div>
+            <div className="navigation-right">
+              <YearDropdown />
+              {currentPage === "dataEntry" && (
+                <Button type="primary" className="submit-proposal-button">
+                  Submit your Proposal
+                </Button>
+              )}
+            </div>
           </div>
           <div className="content">{renderPage()}</div>
         </Content>

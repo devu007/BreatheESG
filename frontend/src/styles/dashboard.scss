@@ -28,10 +28,10 @@
   margin-right: 10px;
 }
 
-.navbar-title {
-  font-size: 24px;
-  font-weight: bold;
+.user-name {
   margin-right: 20px;
+  font-size: 16px;
+  color: black;
 }
 
 .country-dropdown {
@@ -50,11 +50,16 @@
   margin-right: 10px;
 }
 
-.navigation-buttons {
+.navigation-container {
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
+  align-items: center;
   margin: 20px 0;
   margin-left: 40px;
+}
+
+.navigation-buttons {
+  display: flex;
 }
 
 .navigation-buttons button {
@@ -82,6 +87,7 @@
   padding: 0 16px;
   margin-top: 20px; 
 }
+
 .sidebar-logo {
   height: 20px; 
   transition: height 0.3s;
@@ -90,6 +96,36 @@
 .sidebar-logo.collapsed {
   height: 10px; 
   transition: height 0.3s; 
+}
+
+.navigation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.navigation-right {
+  display: flex;
+  align-items: center;
+}
+
+.submit-proposal-button {
+  margin-left: 10px;
+  background-color: #52c41a; /* Green color */
+  border: none;
+  color: white;
+}
+
+.submit-proposal-button:hover,
+.submit-proposal-button:focus {
+  background-color: #389e0d; /* Darker green on hover */
+  color: white;
 }
 
 // Sidebar specific styles

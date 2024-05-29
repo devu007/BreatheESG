@@ -75,7 +75,6 @@ const DataEntry: React.FC = () => {
 
   return (
     <div className="data-table-container">
-      <div className="table-header">Data Entry Table</div>
       <div className="table-container">
         <Table
           columns={columns}
