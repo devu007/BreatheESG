@@ -28,7 +28,7 @@ const Login: React.FC = () => {
       const token = response.data.token;
       login(token);
       alert("User logged in successfully");
-      navigate("/dashboard");
+      navigate("/Dashboard");
     } catch (error: any) {
       console.error(
         "Error during login:",

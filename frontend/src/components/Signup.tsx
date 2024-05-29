@@ -26,7 +26,7 @@ const Signup: React.FC = () => {
       const token = response.data.token;
       login(token);
       alert("User registered successfully");
-      navigate("/dashboard");
+      navigate("/Dashboard");
     } catch (error: any) {
       console.error(
         "Error during signup:",
