@@ -16,10 +16,13 @@ const Signup: React.FC = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post("https://localhost:5000/signup", {
-        email,
-        password,
-      }); // Ensure this URL matches your backend
+      const response = await axios.post(
+        "https://breatheesg.onrender.com/signup",
+        {
+          email,
+          password,
+        }
+      ); // Ensure this URL matches your backend
       const token = response.data.token;
       login(token);
       alert("User registered successfully");
