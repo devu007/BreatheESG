@@ -1,10 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Button, Input, Form } from "antd";
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import "../styles/login.scss";
 import { useAuth } from "../context/AuthContext";
@@ -21,21 +18,19 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
+      const response = await axios.post("http://localhost:5000/login", {
         email,
-        password
-      );
-      const token = await userCredential.user.getIdToken();
-      const userData = {
-        email: userCredential.user.email,
-        photoURL: userCredential.user.photoURL,
-      };
+        password,
+      });
+      const token = response.data.token;
       login(token);
       alert("User logged in successfully");
       navigate("/dashboard");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(
+        "Error during login:",
+        error.response ? error.response.data : error.message
+      );
       alert("Login failed. Please check your email and password.");
     }
   };

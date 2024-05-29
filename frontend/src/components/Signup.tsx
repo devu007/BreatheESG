@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input, Form } from "antd";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import axios from "axios";
 import "../styles/signup.scss";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -17,26 +16,19 @@ const Signup: React.FC = () => {
 
   const handleSignup = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
+      const response = await axios.post("http://localhost:5000/signup", {
         email,
-        password
-      );
-      await updateProfile(userCredential.user, {
-        displayName: name,
-        photoURL: `https://api.dicebear.com/6.x/identicon/svg?seed=${name}`,
-      });
-      const token = await userCredential.user.getIdToken();
-      const userData = {
-        email: userCredential.user.email,
-        displayName: name,
-        photoURL: userCredential.user.photoURL,
-      };
+        password,
+      }); // Ensure this URL matches your backend
+      const token = response.data.token;
       login(token);
       alert("User registered successfully");
       navigate("/dashboard");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(
+        "Error during signup:",
+        error.response ? error.response.data : error.message
+      );
       alert("Signup failed. Please try again.");
     }
   };
@@ -63,7 +55,7 @@ const Signup: React.FC = () => {
             <h1 className="signup-title">Sign Up</h1>
           </div>
           <Form className="signup-form">
-            <p className="input-label">Email</p>
+            <p className="input-label">Name</p>
             <Form.Item className="signup-form-item">
               <Input
                 type="text"
@@ -73,8 +65,7 @@ const Signup: React.FC = () => {
                 className="signup-input"
               />
             </Form.Item>
-            <p className="input-label">Password</p>
-
+            <p className="input-label">Email</p>
             <Form.Item className="signup-form-item">
               <Input
                 type="email"
@@ -84,8 +75,8 @@ const Signup: React.FC = () => {
                 className="signup-input"
               />
             </Form.Item>
+            <p className="input-label">Password</p>
             <Form.Item className="signup-form-item">
-              <p className="input-label">Confirm Password</p>
               <Input.Password
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
