@@ -18,13 +18,10 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "https://breatheesg.onrender.com/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post("https://localhost:5000/login", {
+        email,
+        password,
+      });
       const token = response.data.token;
       login(token);
       alert("User logged in successfully");
