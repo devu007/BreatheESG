@@ -24,7 +24,7 @@ const Signup: React.FC = () => {
         }
       ); // Ensure this URL matches your backend
       const token = response.data.token;
-      login(token);
+      await login(token); // Await login function
       alert("User registered successfully");
       navigate("/Dashboard");
     } catch (error: any) {

@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (newToken: string) => {
     const currentUser = auth.currentUser;
     if (currentUser) {
+      await currentUser.reload(); // Ensuring user state is updated
       setToken(newToken);
       setUser({
         email: currentUser.email,

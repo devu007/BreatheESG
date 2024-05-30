@@ -26,7 +26,7 @@ const Login: React.FC = () => {
         }
       );
       const token = response.data.token;
-      login(token);
+      await login(token); // Await login function
       alert("User logged in successfully");
       navigate("/Dashboard");
     } catch (error: any) {
@@ -43,11 +43,7 @@ const Login: React.FC = () => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken();
-      const userData = {
-        email: result.user.email,
-        photoURL: result.user.photoURL,
-      };
-      login(token);
+      await login(token); // Await login function
       alert("User logged in with Google successfully");
       navigate("/Dashboard");
     } catch (error) {
