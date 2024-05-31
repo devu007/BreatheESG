@@ -45,10 +45,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signup = async (email: string, password: string) => {
     try {
-      const response = await axios.post("http://localhost:5000/signup", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://breatheesg.onrender.com/signup",
+        {
+          email,
+          password,
+        }
+      );
       const token = response.data.token;
       login(token); // Log the user in after signing up
     } catch (error) {
