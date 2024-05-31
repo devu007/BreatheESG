@@ -18,13 +18,10 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "https://breatheesg.onrender.com/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post("http://localhost:5000/login", {
+        email,
+        password,
+      });
       const token = response.data.token;
       await login(token); // Await login function
       alert("User logged in successfully");
@@ -47,7 +44,8 @@ const Login: React.FC = () => {
       alert("User logged in with Google successfully");
       navigate("/Dashboard");
     } catch (error) {
-      console.error(error);
+      console.error("Error during Google login:", error);
+      alert("Google login failed. Please try again.");
     }
   };
 

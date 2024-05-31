@@ -17,6 +17,22 @@ if (!SECRET_KEY) {
   process.exit(1);
 }
 
+// Middleware to verify token
+const verifyToken = (req, res, next) => {
+  const token = req.headers["authorization"];
+  if (!token) {
+    return res.status(403).json({ message: "No token provided" });
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(500).json({ message: "Failed to authenticate token" });
+    }
+    req.userId = decoded.id;
+    next();
+  });
+};
+
 // Endpoint to handle user registration
 app.post("/signup", (req, res) => {
   const { email, password } = req.body;
@@ -55,6 +71,11 @@ app.post("/login", (req, res) => {
   } else {
     res.status(401).json({ message: "Invalid credentials" });
   }
+});
+
+// Protected route example
+app.get("/protected", verifyToken, (req, res) => {
+  res.json({ message: "This is a protected route", userId: req.userId });
 });
 
 const PORT = process.env.PORT || 5000;

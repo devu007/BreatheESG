@@ -11,20 +11,12 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const { login } = useAuth();
+  const { signup } = useAuth(); // Changed to use signup from AuthContext
   const navigate = useNavigate();
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post(
-        "https://breatheesg.onrender.com/signup",
-        {
-          email,
-          password,
-        }
-      ); // Ensure this URL matches your backend
-      const token = response.data.token;
-      await login(token); // Await login function
+      await signup(email, password); // Using the signup method from AuthContext
       alert("User registered successfully");
       navigate("/Dashboard");
     } catch (error: any) {

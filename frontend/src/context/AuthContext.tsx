@@ -5,8 +5,10 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { jwtDecode } from "jwt-decode"; // Ensure you have jwt-decode installed
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import axios from "axios"; // Add axios import
 
 interface UserData {
   email: string | null;
@@ -18,6 +20,7 @@ interface AuthContextProps {
   token: string | null;
   login: (token: string) => void;
   logout: () => void;
+  signup: (email: string, password: string) => Promise<void>; // Add signup function to the interface
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -26,16 +29,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserData | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
-  const login = async (newToken: string) => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      await currentUser.reload(); // Ensuring user state is updated
-      setToken(newToken);
-      setUser({
-        email: currentUser.email,
-        photoURL: currentUser.photoURL,
-      });
-    }
+  const login = (newToken: string) => {
+    const decodedToken: any = jwtDecode(newToken); // Decode the token to get user information
+    setToken(newToken);
+    setUser({
+      email: decodedToken.email,
+      photoURL: null, // Assuming the token doesn't contain photoURL
+    });
   };
 
   const logout = () => {
@@ -43,14 +43,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
   };
 
+  const signup = async (email: string, password: string) => {
+    try {
+      const response = await axios.post("http://localhost:5000/signup", {
+        email,
+        password,
+      });
+      const token = response.data.token;
+      login(token); // Log the user in after signing up
+    } catch (error) {
+      console.error("Error during signup:", error);
+      throw new Error("Signup failed");
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const idToken = await user.getIdToken();
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const idToken = await firebaseUser.getIdToken();
         setToken(idToken);
         setUser({
-          email: user.email,
-          photoURL: user.photoURL,
+          email: firebaseUser.email,
+          photoURL: firebaseUser.photoURL,
         });
       } else {
         setToken(null);
@@ -61,7 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, signup }}>
       {children}
     </AuthContext.Provider>
   );
